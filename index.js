@@ -11,8 +11,16 @@ function fetchMovies() {
                 movieItem.innerHTML = `
                     <h3>${movie.title}</h3>
                     <img src="${movie.poster}" alt="${movie.title}" style="width: 100px;">
-                    <button onclick="viewMovieDetails(${movie.id})">View Details</button>
+                    <button data-id="${movie.id}">View Details</button>
                 `;
+
+                // Attach the event listener using data-id attribute
+                const button = movieItem.querySelector('button');
+                button.addEventListener('click', () => {
+                    const movieId = button.getAttribute('data-id');
+                    viewMovieDetails(movieId);
+                });
+                
                 movieList.appendChild(movieItem);
             });
         })

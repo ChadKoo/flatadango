@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body and overall layout */
+  html, body {
+    height: 100%; /* Make sure the body and html take up the full height */
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: beige;
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Align items in a column (vertical direction) */
+    
+  }
+  main {
+    flex-grow: 1; /* Allow main content to take up available space */
+    padding: 2rem;
+    background-color: darkslategray;
+  }
+  #intro {
+    text-align: left;
+    color: antiquewhite;
+    font-size: 30px;
+
+  }

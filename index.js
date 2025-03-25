@@ -1,11 +1,10 @@
-// Fetch and display all movies
 function fetchMovies() {
     fetch('http://localhost:3000/films')
         .then(response => response.json())
         .then(movies => {
             const movieList = document.getElementById("movie-list");
             movieList.innerHTML = '';  // Clear any existing content
-            
+
             movies.forEach(movie => {
                 const movieItem = document.createElement("li");
                 movieItem.innerHTML = `
@@ -20,7 +19,7 @@ function fetchMovies() {
                     const movieId = button.getAttribute('data-id');
                     viewMovieDetails(movieId);
                 });
-                
+
                 movieList.appendChild(movieItem);
             });
         })
@@ -41,6 +40,9 @@ function viewMovieDetails(id) {
 
             // Set movieId in the buy ticket button (for later use)
             document.getElementById('buy-ticket-btn').dataset.movieId = movie.id;
+
+            // Display the movie details section on the right
+            document.getElementById('movie-details').style.display = 'block';
         })
         .catch(error => console.error('Error fetching movie details:', error));
 }
@@ -69,7 +71,7 @@ function updateTicketsSold() {
         .then(movie => {
             const updatedMovie = {
                 ...movie,
-                tickets_sold: movie.tickets_sold + 1
+                tickets_sold: movie.tickets_sold + 1  // Increment tickets sold
             };
 
             fetch(`http://localhost:3000/films/${movieId}`, {

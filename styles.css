@@ -6,14 +6,16 @@
   
   #movie-list {
     list-style-type: none;
-    padding: 0;
+    padding: 0; 
+
+    
 }
 
 #movie-list li {
     margin-left: 500px;
     margin-bottom: 20px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 #movie-details {
@@ -38,10 +40,14 @@
 }
 
 main {
-  flex-grow: 1; 
+  position: sticky; /* Make the main section sticky */
+  top: 0; /* Set the sticky position from the top */
+  flex-grow: 1;
   padding: 1px;
   background-color: darkslategray;
-  color: whitesmoke
+  color: whitesmoke;
+  z-index: 1; /* Make sure it stays on top of other content */
+  height: auto;
 }
 body {
  
@@ -51,6 +57,7 @@ body {
 #intro{
   font-size: 25px;
   text-align: center;
+  
 }
 #movieList{
   flex: 1;

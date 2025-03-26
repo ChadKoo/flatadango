@@ -1,15 +1,25 @@
 
+  #container{
+    display: flex;
+    justify-content: space-between;
+  }
+  
   #movie-list {
     list-style-type: none;
     padding: 0;
 }
 
 #movie-list li {
-    margin-bottom: 15px;
+    margin-left: 500px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
 #movie-details {
+    flex: 1; 
+    display: none; 
+    border: 1px solid #ccc; 
+    padding: 10px;;
     border-left: 2px solid #ccc;
     padding-left: 20px;
 }
@@ -28,7 +38,7 @@
 
 main {
   flex-grow: 1; 
-  padding: 2rem;
+  padding: 1px;
   background-color: darkslategray;
   color: whitesmoke
 }
@@ -36,4 +46,8 @@ body {
  
   background-color: rgb(198, 195, 216);
   
+}
+#intro{
+  font-size: 25px;
+  text-align: center;
 }

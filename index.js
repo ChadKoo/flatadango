@@ -1,12 +1,11 @@
-
 function fetchMovies() {
-    fetch('https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json')
+    fetch('https://raw.githubusercontent.com/ChadKoo/flatadango/master/db.json')  // Correct URL
         .then(response => response.json())
-        .then(movies => {
+        .then(data => {
             const movieList = document.getElementById("movie-list");
             movieList.innerHTML = '';  // Clear any existing content
 
-            movies.forEach(movie => {
+            data.films.forEach(movie => {  // Adjusted for correct data structure
                 const movieItem = document.createElement("li");
                 movieItem.innerHTML = `
                     <h3>${movie.title}</h3>
@@ -18,7 +17,7 @@ function fetchMovies() {
                 const button = movieItem.querySelector('button');
                 button.addEventListener('click', () => {
                     const movieId = button.getAttribute('data-id');
-                    viewMovieDetails(movieId);
+                    viewMovieDetails(movieId, data.films);  // Pass the full movie data to filter locally
                 });
 
                 movieList.appendChild(movieItem);
@@ -28,24 +27,23 @@ function fetchMovies() {
 }
 
 // Show details of a selected movie
-function viewMovieDetails(id) {
-    fetch(`https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json/${id}`)
-        .then(response => response.json())
-        .then(movie => {
-            // Populate movie details
-            document.getElementById('movie-title').textContent = movie.title;
-            document.getElementById('movie-poster').src = movie.poster;
-            document.getElementById('movie-runtime').textContent = `Runtime: ${movie.runtime} minutes`;
-            document.getElementById('movie-showtime').textContent = `Showtime: ${movie.showtime}`;
-            document.getElementById('available-tickets').textContent = movie.capacity - movie.tickets_sold;
+function viewMovieDetails(id, films) {
+    const movie = films.find(film => film.id === id);  // Filter movie from the passed array
 
-            // Set movieId in the buy ticket button (for later use)
-            document.getElementById('buy-ticket-btn').dataset.movieId = movie.id;
+    if (movie) {
+        // Populate movie details
+        document.getElementById('movie-title').textContent = movie.title;
+        document.getElementById('movie-poster').src = movie.poster;
+        document.getElementById('movie-runtime').textContent = `Runtime: ${movie.runtime} minutes`;
+        document.getElementById('movie-showtime').textContent = `Showtime: ${movie.showtime}`;
+        document.getElementById('available-tickets').textContent = movie.capacity - movie.tickets_sold;
 
-            // Display the movie details section on the right
-            document.getElementById('movie-details').style.display = 'block';
-        })
-        .catch(error => console.error('Error fetching movie details:', error));
+        // Set movieId in the buy ticket button (for later use)
+        document.getElementById('buy-ticket-btn').dataset.movieId = movie.id;
+
+        // Display the movie details section on the right
+        document.getElementById('movie-details').style.display = 'block';
+    }
 }
 
 // Buy ticket functionality
@@ -54,40 +52,24 @@ document.getElementById('buy-ticket-btn').addEventListener('click', function () 
     let availableTickets = parseInt(availableTicketsElement.textContent);
 
     if (availableTickets > 0) {
-        // Decrease the available tickets
+        // Decrease the available tickets (locally)
         availableTicketsElement.textContent = availableTickets - 1;
 
-        // Update the server with the new tickets sold
+        // Update the server with the new tickets sold (this won't work with GitHub Pages)
+        // You can simulate a local change but it won't persist on GitHub Pages
         updateTicketsSold();
     } else {
         alert("No more tickets available!");
     }
 });
 
-// Function to update tickets sold on the server
+// Function to simulate updating tickets sold (GitHub doesn't support PUT for raw files)
 function updateTicketsSold() {
     const movieId = document.getElementById('buy-ticket-btn').dataset.movieId;  // Get movie ID from the button
-    fetch(`https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json/${movieId}`)
-        .then(response => response.json())
-        .then(movie => {
-            const updatedMovie = {
-                ...movie,
-                tickets_sold: movie.tickets_sold + 1  // Increment tickets sold
-            };
 
-            fetch(`https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json/${movieId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedMovie)
-            })
-                .then(response => response.json())
-                .then(updatedMovie => {
-                    console.log('Tickets sold updated:', updatedMovie);
-                    document.getElementById('available-tickets').textContent = updatedMovie.capacity - updatedMovie.tickets_sold;
-                })
-                .catch(error => console.error('Error updating ticket data:', error));
-        })
-        .catch(error => console.error('Error fetching movie data:', error));
+    // Simulate the ticket update (this will not persist on GitHub)
+    console.log(`Ticket sold for movie ID: ${movieId}`);
+    // You would ideally need a backend or database to persist this update.
 }
 
 // Initialize movie list

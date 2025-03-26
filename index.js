@@ -1,6 +1,6 @@
 
 function fetchMovies() {
-    fetch('http://localhost:3000/films')
+    fetch('https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json')
         .then(response => response.json())
         .then(movies => {
             const movieList = document.getElementById("movie-list");
@@ -29,7 +29,7 @@ function fetchMovies() {
 
 // Show details of a selected movie
 function viewMovieDetails(id) {
-    fetch(`http://localhost:3000/films/${id}`)
+    fetch(`https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json/${id}`)
         .then(response => response.json())
         .then(movie => {
             // Populate movie details
@@ -67,7 +67,7 @@ document.getElementById('buy-ticket-btn').addEventListener('click', function () 
 // Function to update tickets sold on the server
 function updateTicketsSold() {
     const movieId = document.getElementById('buy-ticket-btn').dataset.movieId;  // Get movie ID from the button
-    fetch(`http://localhost:3000/films/${movieId}`)
+    fetch(`https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json/${movieId}`)
         .then(response => response.json())
         .then(movie => {
             const updatedMovie = {
@@ -75,7 +75,7 @@ function updateTicketsSold() {
                 tickets_sold: movie.tickets_sold + 1  // Increment tickets sold
             };
 
-            fetch(`http://localhost:3000/films/${movieId}`, {
+            fetch(`https://raw.githubusercontent.com/ChadKoo/flatadango/refs/heads/master/db.json/${movieId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedMovie)

@@ -74,7 +74,7 @@ I started working on Flatadango as a project in school and to improve my coding 
 
 When I'm not coding, I enjoy exploring new technologies, playing video games, and watching movies.
 
-Skills:
+## Skills:
 Languages: JavaScript, HTML, CSS
 
 Tools: Git, npm

@@ -5,12 +5,15 @@
 Flatadango is a movie ticketing system where users can browse available movies, view detailed information about each movie, and purchase tickets. It provides an easy-to-use interface for users to check available movies, see details like showtimes and ticket availability, and purchase tickets online. The system also displays a "Sold-out" message if no tickets are available for a movie
 
 
+
 ## Features
 
 - **Movie Menu**: A menu on the left side displays all available movies.
 - **Movie Details**: Clicking on a movie displays detailed information, including its poster, title, runtime, showtime, and available tickets.
 - **Ticket Purchase**: Users can buy tickets for available movies.
 - **Sold-out Error**: If a movie is sold out, an error message is displayed indicating no available tickets.
+
+
 
 ## Table of Contents
 - [Installation](#installation)
@@ -44,19 +47,23 @@ To run this project locally, follow these steps:
 
 6. This will start the server, and you can view the application in your browser at http://localhost:3000.
 
+
 ## Usage
-Once the project is running locally, open your browser and navigate to http://localhost:3000. You will be able to:
+-Once the project is running locally, open your browser and navigate to http://localhost:3000. You will be able to:
 
-Browse the available movies.
+-Browse the available movies.
 
-View detailed movie information, including showtimes and available tickets.
+-View detailed movie information, including showtimes and available tickets.
 
-Search for movies by title or genre.
+-View error messages if a movie is sold out.
 
-Purchase tickets for available movies (if there are tickets in stock).
+-Purchase tickets for available movies (if there are tickets in stock). Below is a screenshot of the purchase button;
 ![Buy button screenshot](images/screenshot.png)
 
-View error messages if a movie is sold out.
+
+
+
+
 
 
 
@@ -67,6 +74,8 @@ Frontend: HTML, CSS, JavaScript
 
 Backend: Node.js
 
+
+
 ## About Me
 Hello! 👋 I'm Chad, a developer in training studying at Moringa School. I specialize in front-end development using JavaScript, and I enjoy building projects that solve real-world problems and provide meaningful experiences for users.
 
@@ -74,11 +83,11 @@ I started working on Flatadango as a project in school and to improve my coding 
 
 When I'm not coding, I enjoy exploring new technologies, playing video games, and watching movies.
 
+
 ## Skills:
 Languages: JavaScript, HTML, CSS
 
 Tools: Git, npm
-
 
 
 ## Contact

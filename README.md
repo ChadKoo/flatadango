@@ -54,6 +54,7 @@ View detailed movie information, including showtimes and available tickets.
 Search for movies by title or genre.
 
 Purchase tickets for available movies (if there are tickets in stock).
+![Buy button screenshot](images/screenshot.png)
 
 View error messages if a movie is sold out.
 

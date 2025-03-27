@@ -12,16 +12,18 @@
 }
 
 #movie-list li {
-    margin-left: 500px;
+    margin-left: 200px;
     margin-bottom: 20px;
     cursor: pointer;
     font-size: 15px;
+    border: #0f0909;
+    
 }
 
 #movie-details {
     flex: 1; 
     display: none; 
-    border: 1px solid #ccc; 
+    border: 1px solid #0f0909; 
     padding: 10px;;
     border-left: 2px solid #ccc;
     padding-left: 300px;

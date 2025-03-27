@@ -7,17 +7,11 @@ function fetchMovies() {
 
             data.films.forEach(movie => {  // Adjusted for correct data structure
                 const movieItem = document.createElement("li");
-                movieItem.innerHTML = `
-                    <h3>${movie.title}</h3>
-                    <img src="${movie.poster}" alt="${movie.title}" style="width: 100px;">
-                    <button data-id="${movie.id}">View Details</button>
-                `;
+                movieItem.innerHTML = `<h3 class="movie-title">${movie.title}</h3>`;  // Only show title
 
-                // Attach the event listener using data-id attribute
-                const button = movieItem.querySelector('button');
-                button.addEventListener('click', () => {
-                    const movieId = button.getAttribute('data-id');
-                    viewMovieDetails(movieId, data.films);  // Pass the full movie data to filter locally
+                // Add click event listener to each title
+                movieItem.querySelector('h3').addEventListener('click', () => {
+                    showMovieDetails(movie, data.films);  // Pass full data to show movie details
                 });
 
                 movieList.appendChild(movieItem);
@@ -27,23 +21,19 @@ function fetchMovies() {
 }
 
 // Show details of a selected movie
-function viewMovieDetails(id, films) {
-    const movie = films.find(film => film.id === id);  // Filter movie from the passed array
+function showMovieDetails(movie, films) {
+    // Populate movie details in the right section
+    document.getElementById('movie-title').textContent = movie.title;
+    document.getElementById('movie-poster').src = movie.poster;
+    document.getElementById('movie-runtime').textContent = `Runtime: ${movie.runtime} minutes`;
+    document.getElementById('movie-showtime').textContent = `Showtime: ${movie.showtime}`;
+    document.getElementById('available-tickets').textContent = movie.capacity - movie.tickets_sold;
 
-    if (movie) {
-        // Populate movie details
-        document.getElementById('movie-title').textContent = movie.title;
-        document.getElementById('movie-poster').src = movie.poster;
-        document.getElementById('movie-runtime').textContent = `Runtime: ${movie.runtime} minutes`;
-        document.getElementById('movie-showtime').textContent = `Showtime: ${movie.showtime}`;
-        document.getElementById('available-tickets').textContent = movie.capacity - movie.tickets_sold;
+    // Set movieId in the buy ticket button (for later use)
+    document.getElementById('buy-ticket-btn').dataset.movieId = movie.id;
 
-        // Set movieId in the buy ticket button (for later use)
-        document.getElementById('buy-ticket-btn').dataset.movieId = movie.id;
-
-        // Display the movie details section on the right
-        document.getElementById('movie-details').style.display = 'block';
-    }
+    // Display the movie details section on the right
+    document.getElementById('movie-details').style.display = 'block';
 }
 
 // Buy ticket functionality
@@ -74,3 +64,4 @@ function updateTicketsSold() {
 
 // Initialize movie list
 fetchMovies();
+

@@ -1,4 +1,4 @@
-# flatadango
+# Flatadango
 
 ## Project Overview
 

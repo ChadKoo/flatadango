@@ -15,7 +15,7 @@ Flatadango is a movie ticketing system where users can browse available movies, 
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
-- [Technologies Used](#technologies-used)
+- [Technologies](#technologies)
 - [Features](#features)
 
 
